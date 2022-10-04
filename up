@@ -22,7 +22,9 @@ if [ $keybLayout = "be" ]; then
   cp ~/.config/leftwm/config-azerty.ron ~/.config/leftwm/config.ron
 fi
 
-leftwm command "LoadTheme $SCRIPTPATH/theme.ron"
+#keep toml until wal project makes the file
+#leftwm command "LoadTheme $SCRIPTPATH/theme.ron"
+leftwm command "LoadTheme $SCRIPTPATH/theme.toml"
 
 # keybindings daemon
 # put your personal keybinds inside your theme and use those
