@@ -16,15 +16,25 @@ $accent-color: #ffa666;
 .left {
     margin: 0 6px;
 }
+
 .right {
     margin: 0 12px;
 }
 
 .rounded-grey-box {
     background-color: $box-color;
-    border-radius: 6px;
+    border-radius: 2px;
+    margin: 6px 0;
+    padding: 2px;
+}
+
+.rounded-grey-box-system-menu {
+    background-color: $bg-color;
+    border-radius: 2px;
     margin: 4px 0;
     padding: 0 6px;
+    font-size: 24px;
+
 }
 
 .tag {
@@ -33,13 +43,17 @@ $accent-color: #ffa666;
     padding: 0 3px;
     font-size: 12px;
     border-radius: 3px;
-    &.tag-focused, &.tag-visible {
+
+    &.tag-focused,
+    &.tag-visible {
         background-color: $accent-color;
         color: $box-color;
     }
+
     &.tag-active {
         color: $accent-color;
     }
+
     &.tag-urgent label {
         color: #ff6666;
     }
@@ -62,30 +76,37 @@ $accent-color: #ffa666;
 .hour {
     font-weight: bold;
 }
+
 .test {
     color: $accent-color;
     background-color: $box-color;
     border-radius: 10px;
 }
+
 .testb {
     color: $fg-color;
     font-size: 16;
     margin: 8px;
 }
+
 .sys-infos {
     margin: 0 12px;
 }
+
 .metric-label {
     margin: 0 6px;
     margin-left: 12px;
 }
+
 .metric-progress {
     padding: 12px 0;
-    trough{
+
+    trough {
         background-color: $box-color;
         min-height: 10px;
         min-width: 48px;
         border-radius: 10px;
+
         progress {
             background-color: $accent-color;
             border-radius: 10px;
@@ -111,6 +132,7 @@ $accent-color: #ffa666;
     border-radius: 24px;
     padding: 4px;
 }
+
 .sysmenu-avatar {
     min-height: 24px;
     min-width: 24px;
@@ -118,15 +140,18 @@ $accent-color: #ffa666;
     border-radius: 12px;
     margin-right: 6px;
 }
+
 .sysmenu-powermenu {
     font-family: "Material Design Icons Desktop";
 }
+
 .powermenu-button {
     background-color: $box-color;
     border-radius: 16px;
     min-width: 32px;
     min-height: 32px;
     font-size: 24px;
+
     &.poweroff {
         color: $accent-color;
     }
@@ -138,17 +163,20 @@ $accent-color: #ffa666;
     scale {
         // all: initial;
         margin: 0 12px;
-        trough{
+
+        trough {
             background-color: $box-color;
             min-width: 300px;
             border-radius: 8px;
             min-height: 16px;
             padding: 0;
+
             & highlight {
                 background-color: $accent-color;
                 border-radius: 12px;
                 margin: 4px;
             }
+
             & slider {
                 background-color: transparent;
                 min-height: 16px;
@@ -166,4 +194,3 @@ $accent-color: #ffa666;
         color: $fg-color;
     }
 }
-

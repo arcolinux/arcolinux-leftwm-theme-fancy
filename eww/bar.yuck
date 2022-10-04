@@ -5,7 +5,7 @@
                                :height "32px"
                                :anchor "top center")
            :stacking "fg"
-           :reserve (struts :distance "32px" :side "top")
+           :reserve (struts :distance "38px" :side "top")
            :windowtype "dock"
            :wm-ignore false
   (box :space-evenly false
@@ -77,9 +77,9 @@
               :orientation "h"
               :class "metric-progress")))
 (defwidget system-menu []
-  (button :class "rounded-grey-box"
+  (button :class "rounded-grey-box-system-menu"
           :onclick "./toggle_sysmenu.sh"
-    "system menu here"))
+    " 襤 "))
 
 (defwidget time []
   (box :class "time" :orientation "v"
