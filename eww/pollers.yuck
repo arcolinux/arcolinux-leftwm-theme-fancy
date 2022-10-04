@@ -1,0 +1,8 @@
+(defpoll hour :interval "1s" `date +%H:%M`)
+(defpoll date :interval "10s" `date +%d/%m/%Y`)
+(defpoll window-title :interval "0.1s"
+  `xdotool getactivewindow getwindowname 2>/dev/null || echo ""`)
+(defpoll battery :interval "10s"
+  `cat /sys/class/power_supply/BAT0/capacity`)
+(defpoll battery-status :interval "10s"
+  `cat /sys/class/power_supply/BAT0/status`)

@@ -1,2 +1,7 @@
-(include "./bar.yuck")
-(include "./menu.yuck")
+; Add the includes
+
+(include "bar.yuck")
+(include "menu.yuck")
+(include "listeners.yuck")
+(include "pollers.yuck")
+

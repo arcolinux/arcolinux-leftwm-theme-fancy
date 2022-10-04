@@ -13,19 +13,6 @@
     (title)
     (right)))
 
-(defpoll hour :interval "1s" `date +%H:%M`)
-(defpoll date :interval "10s" `date +%d/%m/%Y`)
-(deflisten wm-tags
-  "leftwm-state -w 0 -t ./template.liquid")
-(deflisten wm-layout
-  "leftwm-state -w 0 -t ./layout.liquid")
-(defpoll window-title :interval "0.1s"
-  `xdotool getactivewindow getwindowname 2>/dev/null || echo ""`)
-(defpoll battery :interval "10s"
-  `cat /sys/class/power_supply/BAT0/capacity`)
-(defpoll battery-status :interval "10s"
-  `cat /sys/class/power_supply/BAT0/status`)
-
 ;; Left module (tags and layout)
 
 (defwidget left []

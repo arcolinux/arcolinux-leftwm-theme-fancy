@@ -1,13 +1,16 @@
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+* {
+    font-family: "iosevka";
+}
+
 /* $bg-color: #2e2e38; */
 $bg-color: RGBA(10,10,10,0.85);
 $box-color: #5c5c70;
 $fg-color: #c7c7d1;
 $accent-color: #ffa666;
-
-* {
-    all: unset;
-    font-family: "iosevka";
-}
 
 /* BAR */
 .bar {

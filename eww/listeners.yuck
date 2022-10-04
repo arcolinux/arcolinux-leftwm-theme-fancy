@@ -1,0 +1,5 @@
+(deflisten wm-tags
+  "leftwm-state -w 0 -t ./template.liquid")
+(deflisten wm-layout
+  "leftwm-state -w 0 -t ./layout.liquid")
+  
