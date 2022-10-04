@@ -1,0 +1,169 @@
+$bg-color: #2e2e38;
+$box-color: #5c5c70;
+$fg-color: #c7c7d1;
+$accent-color: #ffa666;
+
+* {
+    all: unset;
+    font-family: "iosevka";
+}
+
+/* BAR */
+.bar {
+    background-color: $bg-color;
+}
+
+.left {
+    margin: 0 6px;
+}
+.right {
+    margin: 0 12px;
+}
+
+.rounded-grey-box {
+    background-color: $box-color;
+    border-radius: 6px;
+    margin: 4px 0;
+    padding: 0 6px;
+}
+
+.tag {
+    background-color: $box-color;
+    margin: 4px 0;
+    padding: 0 3px;
+    font-size: 12px;
+    border-radius: 3px;
+    &.tag-focused, &.tag-visible {
+        background-color: $accent-color;
+        color: $box-color;
+    }
+    &.tag-active {
+        color: $accent-color;
+    }
+    &.tag-urgent label {
+        color: #ff6666;
+    }
+}
+
+.layout {
+    color: $box-color;
+}
+
+.title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.time {
+    font-size: 12px;
+    color: $fg-color;
+}
+
+.hour {
+    font-weight: bold;
+}
+.test {
+    color: $accent-color;
+    background-color: $box-color;
+    border-radius: 10px;
+}
+.testb {
+    color: $fg-color;
+    font-size: 16;
+    margin: 8px;
+}
+.sys-infos {
+    margin: 0 12px;
+}
+.metric-label {
+    margin: 0 6px;
+    margin-left: 12px;
+}
+.metric-progress {
+    padding: 12px 0;
+    trough{
+        background-color: $box-color;
+        min-height: 10px;
+        min-width: 48px;
+        border-radius: 10px;
+        progress {
+            background-color: $accent-color;
+            border-radius: 10px;
+            min-height: 6px;
+            margin: 0 2px;
+        }
+    }
+}
+
+/* SYSTEM MENU */
+
+.sysmenu {
+    border-radius: 12px;
+    background-color: $bg-color;
+}
+
+.sysmenu-topbox {
+    margin: 12px;
+}
+
+.sysmenu-user {
+    background-color: $box-color;
+    border-radius: 24px;
+    padding: 4px;
+}
+.sysmenu-avatar {
+    min-height: 24px;
+    min-width: 24px;
+    background-size: cover;
+    border-radius: 12px;
+    margin-right: 6px;
+}
+.sysmenu-powermenu {
+    font-family: "Material Design Icons Desktop";
+}
+.powermenu-button {
+    background-color: $box-color;
+    border-radius: 16px;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 24px;
+    &.poweroff {
+        color: $accent-color;
+    }
+}
+
+.sysmenu-sliders {
+    margin: 12px 18px;
+
+    scale {
+        // all: initial;
+        margin: 0 12px;
+        trough{
+            background-color: $box-color;
+            min-width: 300px;
+            border-radius: 8px;
+            min-height: 16px;
+            padding: 0;
+            & highlight {
+                background-color: $accent-color;
+                border-radius: 12px;
+                margin: 4px;
+            }
+            & slider {
+                background-color: transparent;
+                min-height: 16px;
+                min-width: 16px;
+                border-radius: 100%;
+                margin-left: -7px;
+            }
+        }
+    }
+
+    button {
+        min-width: 32px;
+        min-height: 32px;
+        font-size: 28px;
+        color: $fg-color;
+    }
+}
+

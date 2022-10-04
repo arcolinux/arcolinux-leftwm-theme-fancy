@@ -1,0 +1,87 @@
+(defwindow bar :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "0%"
+                               :width "100%"
+                               :height "32px"
+                               :anchor "top center")
+           :stacking "fg"
+           :reserve (struts :distance "32px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+  (box :space-evenly false
+    (left)
+    (title)
+    (right)))
+
+(defpoll hour :interval "1s" `date +%H:%M`)
+(defpoll date :interval "10s" `date +%d/%m/%Y`)
+(deflisten wm-tags
+  "leftwm-state -w 0 -t ./template.liquid")
+(deflisten wm-layout
+  "leftwm-state -w 0 -t ./layout.liquid")
+(defpoll window-title :interval "0.1s"
+  `xdotool getactivewindow getwindowname 2>/dev/null || echo ""`)
+(defpoll battery :interval "10s"
+  `cat /sys/class/power_supply/BAT0/capacity`)
+(defpoll battery-status :interval "10s"
+  `cat /sys/class/power_supply/BAT0/status`)
+
+;; Left module (tags and layout)
+
+(defwidget left []
+  (box :class "left" :halign "start" :space-evenly false :spacing 12
+    (tags)
+    (layout)))
+
+;; Left module (tags and layout)
+
+(defwidget tags []
+  (literal :content {wm-tags}))
+
+(defwidget layout []
+  (box :class "layout" :valign "center" {wm-layout}))
+
+
+(defwidget title []
+  (label :class "title"
+         :hexpand true
+         :limit-width 50
+         :wrap true
+         :text {window-title}))
+
+;; Right modules
+
+(defwidget right []
+  (box :class "right" :halign "end" :space-evenly false :spacing 12
+    (system-infos)
+    (system-menu)
+    (time)))
+
+(defwidget system-infos []
+  (box :class "sys-infos" :space-evenly false :spacing 6
+    (metric :value {round(EWW_RAM.used_mem / EWW_RAM.total_mem, 4) * 100}
+            :label "ram"
+            :tooltip "${round(EWW_RAM.used_mem / 1000000, 3)}Go / ${round(EWW_RAM.total_mem / 1000000, 3)}Go")
+    (metric :value {(EWW_DISK["/"].used / EWW_DISK["/"].total) * 100}
+            :label "disk"
+            :tooltip "${round(EWW_DISK['/'].used / EWW_DISK['/'].total, 4) * 100}%")
+    (metric :value { battery == "" ? 0 : battery }
+            :label {battery-status == "Charging" ? "bat(+)" : "bat"}
+            :tooltip "${battery}%")))
+
+(defwidget metric [label value tooltip]
+  (box :space-evenly false
+       :tooltip tooltip
+    (label :class "metric-label" :text label)
+    (progress :value value
+              :orientation "h"
+              :class "metric-progress")))
+(defwidget system-menu []
+  (button :class "rounded-grey-box"
+          :onclick "./toggle_sysmenu.sh"
+    "system menu here"))
+
+(defwidget time []
+  (box :class "time" :orientation "v"
+    (box :class "hour" hour)
+    (box :class "date" date)))

@@ -1,0 +1,83 @@
+(defwindow sysmenu :monitor 0
+           :geometry (geometry :x "-12px"
+                               :y "44px"
+                               :height "400px"
+                               :anchor "top right")
+           :stacking "fg"
+           :wm-ignore true
+  (box :orientation "v"
+       :space-evenly false
+    (top)
+    (sliders)))
+
+(defvar user "syu")
+(defpoll volume :interval "0.1s"
+  `pamixer --get-volume`)
+(defpoll muted :interval "0.1s"
+  `pamixer --get-volume-human &>/dev/null; echo $?`)
+(defpoll brightness :interval "0.1s"
+  `cat /sys/class/backlight/amdgpu_bl1/actual_brightness`)
+
+;; Top line (user and power menu)
+
+(defwidget top []
+  (box :class "sysmenu-topbox"
+       :valign "start"
+    (box :class "sysmenu-user"
+         :halign "start"
+      (box :style "background-image: url('/home/${user}/.face');"
+           :class "sysmenu-avatar")
+      (label :text {user}))
+    (box :class "sysmenu-powermenu"
+         :halign "end"
+         :spacing 12
+      (button :class "powermenu-button"
+           :onclick "loginctl kill-session $XDG_SESSION_ID"
+      "")
+      (button :class "powermenu-button"
+           :onclick ""
+      "")
+      (button :class "powermenu-button"
+           :onclick "reboot"
+      "ﰇ")
+      (button :class "powermenu-button poweroff"
+           :onclick "poweroff"
+      "襤"))))
+
+;; sound and brightness sliders
+
+(defwidget sliders []
+  (box :orientation "v"
+       :valign "start"
+       :class "sysmenu-sliders"
+
+    ;; Sound
+    (box :orientation "h"
+         :space-evenly false
+         :class "slider"
+      (button :halign "start"
+        {muted == "1" ? "婢" : "墳"})
+      (scale :halign "center"
+             :hexpand true
+             :min 0
+             :max 100
+             :value volume
+             :onchange "pamixer --set-volume $(echo {} | awk '{print ($0-int($0)<0.000001)?int($0):int($0)+1}')")
+      (button :halign "end"
+              :style "font-size: 20px;"
+        ""))
+
+    ;; Brightness
+    (box :orientation "h"
+         :space-evenly false
+         :class "slider"
+      (button :halign "start" "ﯦ")
+      (scale :halign "center"
+             :hexpand true
+             :min 1
+             :max 255
+             :value brightness
+             :onchange "echo {} | awk '{print ($0-int($0)<0.000001)?int($0):int($0)+1}' > /sys/class/backlight/amdgpu_bl1/brightness")
+      (button :halign "end"
+              :style "font-size: 20px;"
+        ""))))

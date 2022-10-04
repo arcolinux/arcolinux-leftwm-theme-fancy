@@ -1,0 +1,19 @@
+{% assign mine_open = ' (button :class "tag tag-focused" :onclick "leftwm-command \"SendWorkspaceToTag ' %}
+{% assign visible_open = ' (button :class "tag tag-visible" :onclick "leftwm-command \"SendWorkspaceToTag ' %}
+{% assign busy_open = ' (button :class "tag tag-active" :onclick "leftwm-command \"SendWorkspaceToTag ' %}
+{% assign close = '`)' %}
+{% assign unoccupied = ' (button :class "tag" :onclick "leftwm-command \"SendWorkspaceToTag ' %}
+
+{{'(box :class "rounded-grey-box" :orientation "h" :space-evenly false :halign "start" :spacing 6'}}
+{% for tag in workspace.tags %}
+{% if tag.mine %}
+{{mine_open}}{{workspace.index | append: ' ' | append: tag.index | append: '\"" `'}}{{ tag.name }}{{close}}
+{% elsif tag.visible  %}
+{{visible_open}}{{workspace.index | append: ' ' | append: tag.index | append: '\"" `'}}{{ tag.name }}{{close}}
+{% elsif tag.busy  %}
+{{busy_open}}{{workspace.index | append: ' ' | append: tag.index | append: '\"" `'}}{{ tag.name }}{{close}}
+{% else %}
+{{unoccupied}}{{workspace.index | append: ' ' | append: tag.index | append: '\"" `'}}{{ tag.name }}{{close}}
+{% endif %}
+{% endfor %}
+{{")"}}

@@ -1,0 +1,17 @@
+Install eww or eww-git for the toolbar
+There is no polybar here.
+
+sudo pacman -S eww
+
+make a symbolic link to the eww folder in your theme
+
+go to your .config
+
+no eww folder present there (rename it if there is one) then open terminal in ~/.config
+and type
+
+ls -s eww ~/.config/leftwm/current/eww
+
+then eww will take the config of your current theme
+
+We keep using theme.toml until developer of wal creates a .ron file
