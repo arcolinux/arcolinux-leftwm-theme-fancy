@@ -83,5 +83,16 @@ fi
 
 # EWW
 eww daemon
-eww open bar -c $SCRIPTPATH/eww
+
+#mainbar
+
+#single screen
+for i in {0..0}
+
+#dual screen
+#for i in {0..1}
+
+do
+   eww open bar$i -c $SCRIPTPATH/eww
+done
 eww update user=$(whoami) -c $SCRIPTPATH/eww
